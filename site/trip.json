@@ -1,0 +1,34 @@
+{
+  "id": "anhui",
+  "title": "皖南秋日摄影自驾",
+  "subtitle": "沿着山路，把秋天慢慢拍。",
+  "region": "安徽 · 皖南",
+  "status": "planned",
+  "statusLabel": "计划中",
+  "date": "2026.11.19 — 11.22",
+  "dateNote": "四天候选窗口",
+  "duration": "4天3晚",
+  "transport": "武汉出发 · 电车自驾",
+  "route": [
+    "武汉",
+    "泾县",
+    "月亮湾",
+    "桃岭",
+    "方塘",
+    "储家滩",
+    "宁国",
+    "武汉"
+  ],
+  "description": "白天走桃岭，清晨守方塘的一排红杉。在湖边住一晚，把晨雾、吃饭和休息一起排进路书。",
+  "tags": [
+    "红杉倒影",
+    "盘山公路",
+    "晨雾",
+    "电车补能"
+  ],
+  "image": "cover.webp",
+  "imageAlt": "方塘的一排红杉立在静水与薄雾中，湖岸与倒影构成画面。",
+  "imageCredit": "9527是只猫 · 方塘摄影参考",
+  "imageSource": "https://www.xiaohongshu.com/explore/692afba9000000001e028e2a",
+  "highlights": "路线地图 · 逐日行程 · 经典机位 · 吃住与补能"
+}
