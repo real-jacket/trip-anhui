@@ -1,1 +1,1 @@
-{"name":"trip-anhui","version":"0.0.0","private":true,"type":"module","scripts":{"check":"node --test tests/*.test.mjs","preview":"node scripts/serve.mjs","map:build":"node scripts/build-trip-map.mjs"},"packageManager":"pnpm@11.23.0","engines":{"node":">=24"}}
+{"name":"trip-anhui","version":"0.0.0","description":"皖南秋日摄影自驾路书：四天候选计划的静态站点源文件","private":true,"type":"module","scripts":{"check":"node --test tests/*.test.mjs","preview":"node scripts/serve.mjs","map:build":"node scripts/build-trip-map.mjs"},"packageManager":"pnpm@11.23.0","engines":{"node":">=24"}}
