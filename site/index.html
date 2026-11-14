@@ -1116,8 +1116,8 @@ function mountMap() {
   el.replaceChildren();
   TripMap.renderLegend($('map-terrain-legend'));
   tripMap = TripMap.create({
-    container:el, base:'map/base.pmtiles', terrain:'map/terrain.pmtiles', landcover:'map/landcover.pmtiles', landcoverFullZoom:9, maxBounds:[112.4,26.3,120.0,34.9], reliefTint:false, reliefRange:[0,1800], routes:'map/routes.geojson',
-    points:mapPoints, maxZoom:14, clusterMaxZoom:13, mergeClusters:true, fitButton:false,
+    container:el, base:'map/base.pmtiles', terrain:'map/terrain.pmtiles', landcover:'map/landcover.pmtiles', landcoverFullZoom:9, baseFullZoom:12, detail:'https://tiles.openfreemap.org/planet', terrainFullZoom:10, maxBounds:[112.4,26.3,120.0,34.9], reliefTint:false, reliefRange:[0,1800], routes:'map/routes.geojson',
+    points:mapPoints, maxZoom:15, clusterMaxZoom:13, mergeClusters:true, fitButton:false,
     errorText:'地图资源加载失败，路线与机位仍可查看；可重试或打开高德。',
     onPointClick:point => {
       focusedPoint = point.id; focusedSpot = null; showPointDetail(point.id);

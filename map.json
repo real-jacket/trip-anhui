@@ -1,7 +1,7 @@
 {
   "routesSource": "site/map/routes.geojson was converted from the roadbook's recorded OSRM geometry (routing.openstreetmap.de, 2026-11-06), 2 m simplified; check it with: pnpm map:build --validate",
   "base": {
-    "url": "https://build.protomaps.com/20261107.pmtiles",
+    "url": "https://build.protomaps.com/20261113.pmtiles",
     "tiers": [
       {
         "bbox": [
@@ -77,17 +77,6 @@
         ],
         "minzoom": 8,
         "maxzoom": 10
-      },
-      {
-        "corridor": 5,
-        "clip": [
-          117.8,
-          29.85,
-          119.15,
-          31.15
-        ],
-        "minzoom": 11,
-        "maxzoom": 11
       }
     ]
   },

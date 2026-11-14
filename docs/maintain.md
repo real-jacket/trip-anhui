@@ -43,12 +43,13 @@ pnpm map:build --landcover          # 由 ESA WorldCover 生成 landcover.pmtile
 pnpm map:build --validate           # 复用旧路线时，只检查回头路
 ```
 
-低缩放层用大范围、高缩放层只覆盖路线走廊和点位；页面 `maxBounds` 不超出已制作范围。`site/map/` 合计不超过 40 MB（测试强制）；重生成的二进制会永久留在 Git 历史里，定稿后不要反复重建。选型依据见 [地图选型](map-selection.md)。
+低缩放层用大范围、高缩放层只覆盖路线走廊和点位；页面 `maxBounds` 不超出已制作范围。`site/map/` 合计不超过 40 MB（测试强制）；重生成的二进制会永久留在 Git 历史里，定稿后不要反复重建。选型依据见 [地图选型](map-selection.md)。 页面选项 `baseFullZoom`（底图整幅覆盖的最高缩放）与 `map.json` 的 tier 要同步：改 tier 的 z 范围时同时改它，测试会检查该选项存在。样式新增街道名（z13+）、旅行 POI 圆点（z13/14+）、建筑（z14+），数据缺了就不要加对应图层。Protomaps 日构建 URL 会过期（404），重抽取前先把 `map.json` 里的日期换成最新一天。
 
 地图规则：
 
 - 底图是土地覆盖地形图：森林、灌草、农田、城镇、水体/湿地、裸地用不同颜色区分，上面叠浅山体阴影，再叠分级道路（含 G/S 编号）和省/市/县界与地名。土地覆盖只能叠加，不能替换路网和行政层；国界与争议线保持隐藏。页面用 `TripMap.renderLegend` 放中文图例。
 - 地图下方保留“用高德查看路线”分段清单：按当前方案/天把相邻点位切成“起点 → 途经 → 终点”段，用 `TripMap.navSegments` 与 `TripMap.amapRoute` 生成高德驾车导航链接（坐标转 GCJ-02）。画出的路线用来看，分段导航用来走，两者都要有；`tests/anhui.test.mjs` 锁定了链接内容。
+- 高缩放细节层：页面传 `detail: 'https://tiles.openfreemap.org/planet'` 后，z11 起叠加 OpenFreeMap 在线瓦片，离线数据负责总览与兜底（说明、合规与回退见 [地图选型](map-selection.md) 第 0a 节）。改 `trip-map.js` 后同步拷贝到另一个旅行仓库并保持逐字节一致；在线境界层的 `admin_level > 2`、`disputed`、`maritime` 过滤不能删，测试会检查。验收要看三件事：正常总览外观不变；屏蔽 `tiles.openfreemap.org` 后刷新仍是完整的离线地图；放大到 z14/z16 有路名和汉字地名。
 - 点击地图点位只定位并更新侧栏；技术接口、坐标转换和密钥说明不写进访客页面。
 
 ## 检查与验收
