@@ -2,7 +2,7 @@
 
 本仓库是「皖南秋日摄影自驾」路书：四天候选计划（2026.11.19—22，`planned`），不是已订或已完成的行程。整份路书（含摄影师署名和全部可用交互）已完整保留，修改时不要丢掉它们。视觉沿用暖纸色、深绿、秋色点缀和摄影杂志风；访客页面不出现框架、地图服务商和部署细节。
 
-所有发布内容在 `site/`，发布为独立的 GitHub Pages 站点 `https://real-jacket.github.io/trip-anhui/`，Pages 原样发布该目录；页面只用相对路径，不引用 `site/` 之外。保留照片署名、全部可用交互和已有存储容错，以及桌面与手机都可见的“回旅行首页”链接。候选计划用 `planned`，历史路书用 `archived`，日期已过不等于旅行完成。维护流程见 `docs/maintain.md` 与 `skills/travel-journal/SKILL.md`；草稿、研究资料放被忽略的 `work/`。
+所有发布内容在 `site/`，发布为独立的 GitHub Pages 站点 `https://real-jacket.github.io/trip-anhui/`，Pages 原样发布该目录；页面只用相对路径，不引用 `site/` 之外。照片是 `site/photos/` 下的独立文件（页面以 `photos/…` 相对路径引用，首屏图之外懒加载，不再内嵌 base64；`tests/anhui.test.mjs` 限制 `index.html` 小于 500 KB 且 `photos/` 无孤儿文件）。保留照片署名、全部可用交互和已有存储容错，以及桌面与手机都可见的“回旅行首页”链接。候选计划用 `planned`，历史路书用 `archived`，日期已过不等于旅行完成。维护流程见 `docs/maintain.md` 与 `skills/travel-journal/SKILL.md`；草稿、研究资料放被忽略的 `work/`。
 
 本站被旅行首页（`travel-journal`）收录，首页读取 `site/trip.json`，改动路书时保持它有效；路书本身不依赖首页。
 

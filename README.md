@@ -34,7 +34,7 @@ pnpm check     # 零依赖测试：清单、相对资源、公开文件安全、
 
 ## 修改这份路书
 
-- 页面内容在 `site/index.html`（单文件，25 张照片内嵌），首页卡片信息在 `site/trip.json`。
+- 页面内容在 `site/index.html`（约 290 KB，不含图片数据），24 张照片作为独立文件放在 `site/photos/`（原始字节，未重新编码，页面以相对路径懒加载），首页卡片信息在 `site/trip.json`。
 - 地图数据由根目录 `map.json` 描述，用 `pnpm map:build --routes|--extract|--landcover|--validate` 重新生成到 `site/map/`，合计不超过 40 MB（测试强制）。重生成的二进制会留在 Git 历史里，定稿后不要反复重建。
 - 流程、规则和发布条件见 [维护这份路书](docs/maintain.md)，其余文档见 [文档索引](docs/README.md)。协作约定在 [AGENTS.md](AGENTS.md)。
 

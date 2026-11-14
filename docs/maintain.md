@@ -10,7 +10,8 @@
 
 | 内容 | 位置 |
 |---|---|
-| 路书页面（单文件，照片以内嵌方式保存） | `site/index.html` |
+| 路书页面（不含图片数据；样式与脚本仍在同一文件） | `site/index.html` |
+| 页面照片（独立文件，页面用 `photos/…` 相对路径引用并懒加载；新增或替换照片只改这里与 `index.html`，不要再内嵌 base64） | `site/photos/` |
 | 首页卡片清单与封面 | `site/trip.json`、`site/cover.webp` |
 | 共用地图模块 | `site/vendor/map/` |
 | 地图数据（底图、地形、土地覆盖、路线） | `site/map/`，由 `map.json` 与 `pnpm map:build` 生成 |

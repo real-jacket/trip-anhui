@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile, stat } from "node:fs/promises";
+import { readdir, readFile, stat } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import vm from "node:vm";
@@ -40,4 +40,16 @@ test("安徽路书：分段导航经共享模块生成，与迁移前的高德�
   assert.equal(all[5], "https://uri.amap.com/navigation?from=118.889617%2C30.587837%2C%E5%82%A8%E5%AE%B6%E6%BB%A9&to=114.310945%2C30.590391%2C%E6%AD%A6%E6%B1%89&mode=car&policy=0&callnative=1&src=anhui-autumn-guide&via=118.991806%2C30.632943%2C%E5%AE%81%E5%9B%BD%E5%9F%8E%E5%8C%BA");
   assert.equal(local[0], "https://uri.amap.com/navigation?from=118.419616%2C30.688705%2C%E6%B3%BE%E5%8E%BF%E5%8E%BF%E5%9F%8E&to=118.593829%2C30.509912%2C%E6%A1%83%E5%B2%AD%E7%9B%98%E5%B1%B1%E5%85%AC%E8%B7%AF&mode=car&policy=0&callnative=1&src=anhui-autumn-guide&via=118.567923%2C30.687812%2C%E6%9C%88%E4%BA%AE%E6%B9%BE");
   assert.deepEqual(["B4", "A4", "C4", "B3"].map((plan) => `${link(plan, "local").length}/${link(plan, "all").length}`), ["4/6", "5/7", "6/9", "3/6"]);
+});
+
+test("安徽路书：照片是 site/photos/ 下的独立文件，index.html 不内嵌大图、不引用缺失或孤儿照片，且小于 500 KB", async () => {
+  const big = [...html.matchAll(/data:image\/[^"')\s]+/g)].filter((m) => m[0].length > 2048);
+  assert.deepEqual(big.map((m) => m[0].slice(0, 40)), [], "不应内嵌大于 2 KB 的 data:image");
+  assert.ok(Buffer.byteLength(html) < 500 * 1024, "index.html 应小于 500 KB");
+  const refs = new Set([...html.matchAll(/photos\/[\w.-]+\.(?:jpg|webp)/g)].map((m) => m[0]));
+  assert.ok(refs.size > 0, "页面应引用 photos/ 下的照片");
+  const files = new Set((await readdir(path.join(site, "photos"))).map((name) => `photos/${name}`));
+  assert.deepEqual([...refs].filter((ref) => !files.has(ref)), [], "引用的照片文件缺失");
+  assert.deepEqual([...files].filter((file) => !refs.has(file)), [], "photos/ 下有未被引用的文件");
+  for (const ref of refs) assert.ok((await stat(path.join(site, ref))).size > 0, `${ref} 为空`);
 });
